@@ -1,14 +1,19 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
-func init() {
-	// println("init func()")
-}
+type stack []int
 
 func main() {
+	var value stack
+	value = append(value, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+	value = value.push(20)
+	fmt.Println(value)
+	fmt.Println(value.pop())
+	// fmt.Println(value.pop())
 	// var name string
 	// name := ""
 	// fmt.Scanf("%s", &name)
@@ -43,9 +48,49 @@ func main() {
 	// s, s2 := Prinln(0)
 	// fmt.Println(s, s2)
 
-	sum, average := Homework(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-	fmt.Println("sum = ", sum)
-	fmt.Println("average = ", average)
+	// sum, average := Homework(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+	// fmt.Println("sum = ", sum)
+	// fmt.Println("average = ", average)
+
+	//-------------------------day 2------------------------------
+	// var slice = []string{"a", "b", "c", "d"}
+	// // slice = append(slice, "a")
+	// fmt.Println(slice[:2]) // [a b]
+	// fmt.Println(slice[2:]) // [c d]
+
+	// slice2 := slice
+
+	// slice3 := append([]string(nil), slice...) // copy
+
+	// index := 1
+	// slice = append(slice[:index], slice[index+1:]...)
+	// fmt.Println(slice, slice2, slice3)
+
+	// s := []int{1, 2, 3, 4, 5, 6}
+	// fmt.Println(reverseArray(s))
+}
+
+func (s stack) push(a int) stack {
+	s = append(s, a)
+	return s
+}
+
+func (s stack) pop() (int, error) {
+	if len(s) == 0 {
+		return 0, errors.New("Empty stack")
+	}
+	a := s[len(s)-1]
+	s = s[:len(s)-1]
+	return a, nil
+}
+
+func reverseArray(nums []int) []int {
+	for i, j := 0, len(nums)-1; i < j; i, j = i+1, j-1 {
+		tmp := nums[i]
+		nums[i] = nums[j]
+		nums[j] = tmp
+	}
+	return nums
 }
 
 //Hello (name, surname string)
