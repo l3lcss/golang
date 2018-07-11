@@ -1,0 +1,26 @@
+﻿https://go-tour-th.appspot.com/moretypes/23
+
+package main
+
+import (
+	"fmt"
+	"strings"
+	
+	"golang.org/x/tour/wc"
+)
+
+func WordCount(s string) map[string]int {
+	var strs = make(map[string]int)
+	fmt.Println(s)
+	fmt.Printf("%#v\n", strings.Fields(s))
+	for _, str := range strings.Fields(s) {
+		fmt.Println(str)
+		strs[str]++
+	}
+	
+	return strs
+}
+
+func main() {
+	wc.Test(WordCount)
+}
